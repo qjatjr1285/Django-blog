@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>제목</h1>
+    <p>블로그</p>
+
+    {% for post in posts %}
+        {{ post.content }}
+    {% endfor %}
+{% endblock %}
