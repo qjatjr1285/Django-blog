@@ -11,18 +11,44 @@
             {{ title }}
         {% endblock %}
     </title>
+    <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            margin: 5%;
+        }
+
+        .login-cont, .regi-cont {
+            padding-top: 5%;
+            padding-left: 5%;
+        }
+
+    </style>
 </head>
 <body>
     <div class="container">
-        {% if user.is_authenticated %}
-        <p>Welcome, {{ user.email }}</p>
-        <a href="{% url 'user:logout' %}">Logout</a>
-        {% else %}
-        <p>Please, Login</p>
-        <a href="{% url 'user:login' %}">Login</a>
-        {% endif %}
-        <h1>Blog</h1>
-        {% block content %}
+        <div class="header">
+            <h1>Blog</h1>
+            {% if user.is_authenticated %}
+            <div>
+                <span>Welcome, {{ user.email }}</span>
+                <a href="{% url 'user:logout' %}">Logout</a>
+            </div>
+            {% else %}
+                {% if type == 'login' %}
+                <div>
+                    <span>계정이 없으신가요?</span>
+                    <a href="{% url 'user:register' %}">Sign up</a>
+                </div>
+                {% elif type == 'register' %}
+                <div>
+                    <span>Please, Login</span>
+                    <a href="{% url 'user:login' %}">Login</a>
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+            {% block content %}
         {% endblock %}
     </div>
 
