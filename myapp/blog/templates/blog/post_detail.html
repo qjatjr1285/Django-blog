@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- form error -->
+{% if form.errors %}
+{% include 'blog/form_error.html' %}
+{% else %}
+    <h2>제목: {{ post_title }}</h2>
+
+    {% if post.writer == request.user %}
+        <a href="{% url 'blog:edit' pk=post_id %}" class="btn border-primary">수정</a>
+
+        <form action="{% url 'blog:delete' pk=post_id %}" method="post">
+            {% csrf_token %} 
+            <input type="submit" value="삭제" class="btn border-primary">
+        </form>
+    {% endif %}
+    <a href="{% url 'blog:list' %}" class="btn border-primary">목록</a>
+    <!-- post_delete.html x -->
+
+    <p>내용 : {{ post_content }}</p>
+    <p>작성자 : {{ post_writer }}</p>
+    <p>작성일 : {{ post_created_at }}</p>
+
+    <hr>
+
+    <!-- 댓글 작성 화면 -->
+    <h3>댓글</h3>
+    <form action="{% url 'blog:cm-write' pk=post_id %}" method="post">
+        {% csrf_token %}
+        {% if comment_form.errors %}
+            {% with form=comment_form %}
+                {% include 'blog/form_error.html' %}
+            {% endwith %}
+        {% else %}
+            {{ comment_form.content }}
+        {% endif %}
+            <input type="submit" value="댓글 작성" class="btn btn-primary">
+    </form>
+    <hr>
+
+    <!-- comments -->
+    <!-- if 문 -->
+    {% if comments %}
+        <!-- for 문 -->
+        <ul>
+            {% for comment in comments %}
+            <!-- 내용, 작성시간, 삭제버튼 -->
+                <li>
+                    {{ comment.content }} | {{ comment.writer}} | {{ comment.created_at }} | 
+                    {% if comment.writer == request.user %}
+                        <form action="{% url 'blog:cm-delete' pk=comment.pk %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="X" class="btn btn-primary">
+                        </form>
+                    {% endif %}
+                </li>
+                {% endfor %}
+        </ul>
+    {% else %}
+    <p>댓글이 없습니다.</p>
+    {% endif %}
+    <hr>
+
+    <!-- 태그 작성 화면 -->
+    <!-- hashtags -->
+    <h3>해시태그</h3>
+    <form action="{% url 'blog:tag-write' pk=post_id %}" method="post">
+        {% csrf_token %}
+        {% if hashtag_form.name.errors %}
+            {% with form=hashtag_form %}
+                {% include 'blog/form_error.html' %}
+            {% endwith %}
+        {% else %}
+            {{ hashtag_form.name }}
+        {% endif %}
+        <input type="submit" value="태그 작성" class="btn btn-primary">
+    </form>
+
+    {% if hashtags %}
+        <ul>
+            {% for hashtag in hashtags %}
+                <li>
+                    {{ hashtag }} | {{ hashtag.writer }} 
+                    {% if hashtag.writer == request.user %}
+                        <form action="{% url 'blog:tag-delete' pk=hashtag.pk %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="X" class="btn btn-primary">
+                        </form>
+                    {% endif %}
+                </li>
+                {% endfor %}
+        </ul>
+    {% else %}
+    <p>태그가 없습니다.</p>
+    {% endif%}
+{% endif %}
+
+{% endblock %}

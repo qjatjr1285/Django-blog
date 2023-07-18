@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if form.errors %}
+        {% include 'blog/form_error.html' %}
+    {% else %}
+    <form method="post">
+        {% csrf_token %} 
+
+        {{ form.title.label_tag }}
+        <input 1type="text" name="{{ form.title.name }}" id="" value="{{ form.initial.title }}">
+        <br>
+        {{ form.content.label_tag }}
+        <textarea type="text" name="{{ form.content.name }}" id="">{{ form.initial.content }}</textarea>
+        <br>
+        <input type="submit">
+    </form>
+    {% endif %}
+{% endblock %}
