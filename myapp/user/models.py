@@ -11,17 +11,17 @@ create_user(), create_superuser()로 구분해서 사용자와 관리자를 생�
 '''
 class UserManager(BaseUserManager):
     
-    def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
+    def _create_user(self, userId, password, is_staff, is_superuser, **extra_fields):
     # User모델의 username이 아니라 email을 id처럼 사용하기 위해서 email이 필수임을 체크합니다. -> 아닐시 오류를 발생시켜 유저 생성이 진행되지 않습니다.
-        if not email:
-            raise ValueError('User must have an email')
+        if not userId:
+            raise ValueError('User must have an userId')
         # now = timezone.now() # 현재시간 -> UTC
         now = timezone.localtime() # User 테이블에 타입(class User(AbstractUser) 내부의 last_login, date_joined 필드)에 맞춰 현재 시각을 가져오기 위한 부분입니다. (데이터 타입: datetime)
-        email = self.normalize_email(email)
+        # email = self.normalize_email(email)
 # normalize_email은 BaseUserManager에서 제공하는 메서드로 정규화를 실행하는 메서드(함수)입니다.
 # 이메일 주소의 대소문자 구분에 따른 중복계정 방지를 위해 사용됩니다.
         user = self.model(
-            email=email,
+            userId=userId,
             is_staff=is_staff,
             is_active=True,
             is_superuser=is_superuser,
@@ -33,16 +33,16 @@ class UserManager(BaseUserManager):
         user.save(using=self._db) # using는 어떤 데이터베이스를 사용할 지 지정해주는 매개변수로 self._db는 현재 사용중인 데이터베이스를 의미합니다.
         return user
     # create_user
-    def create_user(self, email, password, **extra_fields):
-        return self._create_user(email, password, False, False, **extra_fields)
+    def create_user(self, userId, password, **extra_fields):
+        return self._create_user(userId, password, False, False, **extra_fields)
     # create_superuser
-    def create_superuser(self, email, password, **extra_fields):
-        return self._create_user(email, password, True, True, **extra_fields)
+    def create_superuser(self, userId, password, **extra_fields):
+        return self._create_user(userId, password, True, True, **extra_fields)
 
 # Create your models here.
 class User(AbstractUser):
     username = None
-    email = models.EmailField(unique=True, max_length=255) # email 값이 기본키가 된다
+    userId = models.CharField(unique=True, max_length=20) # email 값이 기본키가 된다
     name = models.CharField(max_length=50, null=True, blank=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -55,8 +55,8 @@ class User(AbstractUser):
     # auto_now_add 는 처음 한번 생성했을 때(수정이 필요 없을 때)
     # auto_now 는 업데이트 할 때마다(수정이 필요할 때)
 
-    USERNAME_FIELD = 'email'
-    EMAIL_FIELD = 'email'
+    USERNAME_FIELD = 'userId'
+    # EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = [] # superuser 만들때 필요
 
     objects = UserManager()

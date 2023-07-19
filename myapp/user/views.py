@@ -56,9 +56,9 @@ class Login(View):
         
         form = LoginForm(request, request.POST)
         if form.is_valid():
-            email = form.cleaned_data['username']
+            userId = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate(email=email, password=password) # True, False
+            user = authenticate(userId=userId, password=password) # True, False
             
             if user:
                 login(request, user)
@@ -75,4 +75,4 @@ class Login(View):
 class Logout(View):
     def get(self, request):
         logout(request)
-        return redirect('blog:list')
+        return redirect('user:login')

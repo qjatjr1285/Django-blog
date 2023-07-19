@@ -31,7 +31,7 @@
             <h1>Blog</h1>
             {% if user.is_authenticated %}
             <div>
-                <span>Welcome, {{ user.email }}</span>
+                <span>Welcome, {{ user.userId }}</span>
                 <a href="{% url 'user:logout' %}">Logout</a>
             </div>
             {% else %}
