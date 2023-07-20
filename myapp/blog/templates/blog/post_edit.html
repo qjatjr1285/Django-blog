@@ -7,10 +7,12 @@
     <form method="post">
         {% csrf_token %} 
 
-        {{ form.title.label_tag }}
+        <!-- {{ form.title.label_tag }} -->
+        <span>제목</span>
         <input 1type="text" name="{{ form.title.name }}" id="" value="{{ form.initial.title }}">
         <br>
-        {{ form.content.label_tag }}
+        <!-- {{ form.content.label_tag }} -->
+        <span>내용</span>
         <textarea type="text" name="{{ form.content.name }}" id="">{{ form.initial.content }}</textarea>
         <br>
         <input type="submit">

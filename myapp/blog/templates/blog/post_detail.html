@@ -7,7 +7,7 @@
 {% if form.errors %}
 {% include 'blog/form_error.html' %}
 {% else %}
-    <div class="detail-btn">
+    <div class="detail-btn" style="display: flex; justify-content: flex-end;">
         <a href="{% url 'blog:list' %}" class="btn border-primary">목록</a>
         {% if post_writer == request.user %}
         <a href="{% url 'blog:edit' pk=post_id %}" class="btn border-primary">수정</a>
@@ -21,27 +21,35 @@
     <h2>제목: {{ post_title }}</h2>
     <!-- post_delete.html x -->
 
-    <div class="detail-header">
-        <span>내용 : {{ post_content }}</span>
-        <span>작성자 : {{ post_writer }}</span>
-        <span>작성일 : {{ post_created_at }}</span>
+    <div class="detail-header" style="display: flex;">
+        <span class="dh-cont" style="margin: 3px; margin-right: 5px;">작성자 : {{ post_writer }}</span>|
+        <span class="dh-cont" style="margin: 3px; margin-right: 5px;">작성일 : {{ post_created_at }}</span>
     </div>
-
+    <div class="detail-content" style="display: flex;">
+        <p class="dh-cont" style="margin: 3px; margin-right: 5px;">내용</p>
+        <div style="margin: 10px; width: 90%; height: 200px; border: 1px solid black;">
+            {{post_content}}
+        </div>
+    </div>
     <hr>
 
     <!-- 댓글 작성 화면 -->
-    <h3>댓글</h3>
-    <form action="{% url 'blog:cm-write' pk=post_id %}" method="post">
-        {% csrf_token %}
-        {% if comment_form.errors %}
-            {% with form=comment_form %}
-                {% include 'blog/form_error.html' %}
-            {% endwith %}
-        {% else %}
-            {{ comment_form.content }}
-        {% endif %}
+    <div style="display: flex;">
+        <span style="font-size: large;">댓글</span>
+        <form action="{% url 'blog:cm-write' pk=post_id %}" method="post">
+            {% csrf_token %}
+            {% if comment_form.errors %}
+                {% with form=comment_form %}
+                    {% include 'blog/form_error.html' %}
+                {% endwith %}
+            {% else %}
+                <div style="margin: 5px;">
+                    {{ comment_form.content }}
+                </div>
+            {% endif %}
             <input type="submit" value="댓글 작성" class="btn btn-primary">
-    </form>
+        </form>
+    </div>
     <hr>
 
     <!-- comments -->
@@ -52,13 +60,15 @@
             {% for comment in comments %}
             <!-- 내용, 작성시간, 삭제버튼 -->
                 <li>
-                    {{ comment.content }} | {{ comment.writer}} | {{ comment.created_at }} | 
-                    {% if comment.writer == request.user %}
-                        <form action="{% url 'blog:cm-delete' pk=comment.pk %}" method="post">
-                            {% csrf_token %}
-                            <input type="submit" value="X" class="btn btn-primary">
-                        </form>
-                    {% endif %}
+                    <div style="display: flex;">
+                        {{ comment.content }} | {{ comment.writer}} | {{ comment.created_at }} 
+                        {% if comment.writer == request.user %}
+                            <form action="{% url 'blog:cm-delete' pk=comment.pk %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" value="X" class="btn btn-primary">
+                            </form>
+                        {% endif %}
+                    </div>
                 </li>
                 {% endfor %}
         </ul>
