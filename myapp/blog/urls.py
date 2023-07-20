@@ -12,7 +12,6 @@ urlpatterns = [
     # 글 상세 조회
     path("detail/<int:pk>/", views.DetailView.as_view(), name='detail'), # /blog/detail/1
     # 글 작성
-    # path("write/", views.write, name = 'write'),
     path("write/", views.Write.as_view(), name='write'), # /blog/write/
     # 글 수정
     path("detail/<int:pk>/edit/", views.Update.as_view(), name='edit'),
