@@ -2,11 +2,11 @@
 
 {% block content %}
     <!-- <h1>블로그 게시판 화면</h1> -->
-    <p>블로그 게시판 첫 화면입니다.</p>
     <form action="{% url 'blog:write' %}" method="get">
+        총 <span style="color: blue; font-weight: bold;">{{posts.count}}</span> 개의 게시글이 있습니다.
         <div class="write-form">
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ request.GET.next }}">
-            <input type="submit" class="btn-write" value="글 작성">
+            <input type="submit" class="btn btn-light" value="글 작성">
         </div>
     </form>
     <!-- <a href="{% url 'blog:write' %}" class="btn btn-outline-success">글 작성</a> -->
@@ -38,7 +38,7 @@
             </table>
 
 
-            <div>
+            <div style="font-size: large;">
                 {% if page_objs.has_other_pages %}
                     <ul style="display:flex; justify-content: center; list-style:none;">
                         {% if page_objs.has_previous %}
