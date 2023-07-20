@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>블로그 글 작성 화면</p>
-    <!-- 제목 -->
-    <!-- 내용 -->
-    <form action="{% url 'blog:write' %}" method="post">
-        {% csrf_token %} 
-        <!-- 폼 요청을 허락하겠다. -->
-        {{ form.as_p }}
-        <input type="submit">
-    </form>
-    <a href="{% url 'blog:list' %}">목록</a>
+<form action="{% url 'blog:write' %}" method="post">
+    {% csrf_token %} 
+    {{ form.as_p }}
+    <div style="display: flex;">   
+        <input type="submit" class="btn btn-light">
+        <a href="{% url 'blog:list' %}" class="btn btn-light">목록</a>
+    </div>
+</form>
 
 {% endblock %}
