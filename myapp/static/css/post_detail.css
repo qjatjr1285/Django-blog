@@ -1,3 +1,12 @@
+.detail-btn{
+    display: flex;
+}
+
 .detail-header {
     display: flex;
+    
+}
+
+.dh-cont {
+    margin-right: 3px;
 }
