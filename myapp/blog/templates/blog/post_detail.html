@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -6,22 +7,25 @@
 {% if form.errors %}
 {% include 'blog/form_error.html' %}
 {% else %}
-    <h2>제목: {{ post_title }}</h2>
-
-    {% if post.writer == request.user %}
+    <div class="detail-btn">
+        <a href="{% url 'blog:list' %}" class="btn border-primary">목록</a>
+        {% if post_writer == request.user %}
         <a href="{% url 'blog:edit' pk=post_id %}" class="btn border-primary">수정</a>
-
+        
         <form action="{% url 'blog:delete' pk=post_id %}" method="post">
             {% csrf_token %} 
             <input type="submit" value="삭제" class="btn border-primary">
         </form>
-    {% endif %}
-    <a href="{% url 'blog:list' %}" class="btn border-primary">목록</a>
+        {% endif %}
+    </div>
+    <h2>제목: {{ post_title }}</h2>
     <!-- post_delete.html x -->
 
-    <p>내용 : {{ post_content }}</p>
-    <p>작성자 : {{ post_writer }}</p>
-    <p>작성일 : {{ post_created_at }}</p>
+    <div class="detail-header">
+        <span>내용 : {{ post_content }}</span>
+        <span>작성자 : {{ post_writer }}</span>
+        <span>작성일 : {{ post_created_at }}</span>
+    </div>
 
     <hr>
 
