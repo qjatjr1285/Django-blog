@@ -49,6 +49,9 @@
 - 로그아웃 시 메인페이지로 돌아감
   ![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/5ab6dc45-8d46-4df0-ba80-d10ddb29e178)
 
+## ERD
+![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/cd97efe2-19c3-42e8-8da5-f0c83eed044a)
+
 ## 느낀점
 ```
 장고 수업을 들으면서 생각보다 이해를 못한 부분이 많았어서 제 스스로의 역량으로 코딩을 하기보다
