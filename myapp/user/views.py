@@ -28,7 +28,7 @@ class Registration(View):
         if form.is_valid():
 
             user = form.save()
-            # 로그인 한 다음 이동해도 됨, 일단은 아래로 리다이렉트하게 해놈.
+            # 로그인 한 다음 이동해도 됨, 일단은 아래0로 리다이렉트하게 해놈.
             return redirect('user:login')
         
 
