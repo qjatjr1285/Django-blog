@@ -30,6 +30,8 @@
 - (O) 게시글 삭제기능 구현
 - 게시글 검색기능 구현
 ```
+## ERD
+![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/cd97efe2-19c3-42e8-8da5-f0c83eed044a)
 
 ## 실행화면
 - 메인화면
@@ -49,8 +51,6 @@
 - 로그아웃 시 메인페이지로 돌아감
   ![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/5ab6dc45-8d46-4df0-ba80-d10ddb29e178)
 
-## ERD
-![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/cd97efe2-19c3-42e8-8da5-f0c83eed044a)
 
 ## 느낀점
 ```
