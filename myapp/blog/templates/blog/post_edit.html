@@ -4,6 +4,7 @@
     {% if form.errors %}
         {% include 'blog/form_error.html' %}
     {% else %}
+    <p>게시글 수정 페이지입니다.</p>
     <form method="post">
         {% csrf_token %} 
 
