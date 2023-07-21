@@ -17,6 +17,7 @@
             <table class="table table-bordered">
                 <thead class="table-light">
                     <tr>
+                        <td>번호</td>
                         <td>제목</td>
                         <td>내용</td>
                         <td>작성자</td>
@@ -27,6 +28,7 @@
                 <tbody>
                     {% for post in page_objs %}
                     <tr>
+                        <td>{{ post.pk }}</td>
                         <td><a href="{% url 'blog:detail' pk=post.pk %}" class="btn">{{ post.title }}</a></td>
                         <td>{{ post.content }}</td>
                         <td>{{ post.writer }}</td>

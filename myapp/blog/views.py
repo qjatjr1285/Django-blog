@@ -12,7 +12,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 ### Post
 class Index(View):
     def get(self, request):
-        post_objs = Post.objects.all()
+        post_objs = Post.objects.all().order_by('-id')
         page = request.GET.get('page')
 
         paginator = Paginator(post_objs, 10)
