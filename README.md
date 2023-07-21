@@ -30,3 +30,7 @@
 - (O) 로그인
 - (O) 로그아웃
 ```
+
+## 실행화면
+- 메인화면
+  ![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/cde5c7eb-196c-4e75-ae11-fba0c88efe39)
