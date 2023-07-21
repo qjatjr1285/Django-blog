@@ -39,7 +39,7 @@
 - 회원가입
   ![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/838bf963-fc94-47a3-bf97-8fdcaca2209d)
 - 로그인
-  ![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/83636789-04b3-4da4-a709-cc57595f50da)
+  ![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/90a2a9fc-93a8-4830-afd5-2248d30dfd74)
 - 로그인 후 게시글 목록
   ![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/6ba1a82f-da59-431d-b2af-fff3968d73f3)
 - 글 작성
