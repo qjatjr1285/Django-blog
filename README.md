@@ -1,6 +1,9 @@
 # Django-blog
 오르미 Django Blog 프로젝트
 
+## 개발 목표
+- Django를 이용해 간단한 CRUD를 구현
+  
 ## 개발 환경 및 기간
 ### 개발환경
 ```
@@ -12,9 +15,6 @@
 - 1차 : 2023.07.17 ~ 2023.07.20
 ```
 
-## 개발 목표
-- Django를 이용해 간단한 CRUD를 구현
-
 ## 배포 URL
 ``` ```
 
@@ -23,13 +23,16 @@
 - (O) 메인페이지 구현
     - (O) 회원가입
     - (O) 로그인
-    - (O) 로그아웃
+- (O) 로그아웃
 - (O) 게시글 작성기능 구현
 - (O) 게시글 목록기능 구현
     - (O) 페이징
+    - (O) 게시물 번호 내림차순 정렬
 - (O) 게시글 삭제기능 구현
 - 게시글 검색기능 구현
 ```
+## ERD
+![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/cd97efe2-19c3-42e8-8da5-f0c83eed044a)
 
 ## 실행화면
 - 메인화면
@@ -37,7 +40,7 @@
 - 회원가입
   ![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/838bf963-fc94-47a3-bf97-8fdcaca2209d)
 - 로그인
-  ![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/83636789-04b3-4da4-a709-cc57595f50da)
+  ![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/90a2a9fc-93a8-4830-afd5-2248d30dfd74)
 - 로그인 후 게시글 목록
   ![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/6ba1a82f-da59-431d-b2af-fff3968d73f3)
 - 글 작성
@@ -49,12 +52,10 @@
 - 로그아웃 시 메인페이지로 돌아감
   ![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/5ab6dc45-8d46-4df0-ba80-d10ddb29e178)
 
-## ERD
-![image](https://github.com/qjatjr1285/Django-blog/assets/76689668/cd97efe2-19c3-42e8-8da5-f0c83eed044a)
 
 ## 느낀점
 ```
-장고 수업을 들으면서 생각보다 이해를 못한 부분이 많았어서 제 스스로의 역량으로 코딩을 하기보다
+장고 수업을 들으면서 생각보다 이해를 못한 부분이 많았서 제 스스로의 역량으로 코딩을 하기보다
 이전 수업에 했던 코드들을 참고하여 코딩한 부분이 많이 아쉬웠고 
 개인적으로 시간이 많이 부족했어서 많은 기능들과 디자인, 다른 디테일한 부분들을 신경쓰지 못한게 많이 아쉬웠다.
 ```
