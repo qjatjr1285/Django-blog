@@ -42,7 +42,7 @@ class Login(View):
         context = {
             'form': form,
             'title': 'User',
-            'type' : 'register'
+            'type' : 'login'
         }
         return render(request, 'user/user_login.html', context)
         
