@@ -32,11 +32,35 @@
         }
         
         .profile-img {
-            width: 40px;
+            width: 50px;
             /* height: 30px; */
         }
 
-        
+        /* profile dropdown */
+        .header-container{
+            position : relative;
+            display : inline-block;
+            width: 100px;
+        }
+
+        .header-menu{
+            display : none;
+            position : absolute;
+            z-index : 1; /*다른 요소들보다 앞에 배치*/
+        }
+
+        .header-menu a{
+            display : block;
+            text-decoration: none;
+            color: black;
+            background-color: white;
+            font-size: 12px;
+        }
+
+        .header-container:hover .header-menu {
+            display: block;
+        }
+
 
     </style>
 </head>
@@ -46,16 +70,11 @@
             <h1>Blog</h1>
             {% if user.is_authenticated %}
             <div class="header-container">
+                <span><img src='{% static "image/profile.png" %}' alt="profile" class="profile-img"></span>
                 <div class="header-menu">
-                    <ul>   
-                        <li><a href=""><img src='{% static "image/profile.png" %}' alt="profile" class="profile-img"></a>
-                            <ul>
-                                <li><a href="">내 프로필</a></li>
-                                <li><a href="{% url 'blog:write' %}">글 작성</a></li>
-                                <li><a href="{% url 'user:logout' %}">로그아웃</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <a href="">내 프로필</a>
+                    <a href="{% url 'blog:write' %}">글 작성</a>
+                    <a href="{% url 'user:logout' %}">로그아웃</a>
                 </div>
             </div>
             <!-- <div>
